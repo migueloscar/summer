@@ -1,0 +1,147 @@
+<div class="fluid-container p-3" >
+  <div class="row">
+    <div class="col-xl-12 p-3">
+      <div class="card border-secondary mb-3">
+        <div class="card-header">Generar código a partir de tabla</div>
+        <div class="card-body text-secondary">
+          <form action="">
+            <div class="form-row">
+              <div class="col-md-6 mb-2">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Tabla</span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="table" aria-label="table" aria-describedby="basic-addon1"
+                  name="tablaNombre" [(ngModel)]="tablaDatos.nombre"
+                  >
+                </div>
+              </div>
+              <div class="col-md-6 mb-2">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Descripción</span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="descripcion" name="tablaDescripcion" aria-label="descripcion" aria-describedby="basic-addon1"
+                  [(ngModel)]="tablaDatos.descripcion"
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-12 mb-2 d-flex justify-content-between">
+                <div>
+                  Campos de la tabla:
+                </div>
+                <div>
+                  <button class="btn btn-success" (click)="agregarCampo()">Agregar Campo</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row bg-info pt-2" 
+              *ngFor="let campo of listCampos; let index=index">
+              <div class="col-md-3 mb-2">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Nombre</span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="nombre" name="nombre-nue-{{index}}" aria-label="nombre" aria-describedby="basic-addon1"
+                    [(ngModel)]="campo.campo"
+                  >
+                </div>
+              </div>
+              <div class="col-md-3 mb-2">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">Tipo</label>
+                  </div>
+                  <select class="custom-select" id="tipo" name="tipo-nue-{{index}}" [(ngModel)]="campo.tipoCampo">
+                    <option selected>Seleccione ...</option>
+                    <option [ngValue]="tipocampo" *ngFor="let tipocampo of listTiposCampos">{{tipocampo.tipo}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-3 mb-2">
+                <div class="input-group" *ngIf="campo.tipoCampo.longitud">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Logitud</span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="logitud" name="longitud-nue-{{index}}" aria-label="longitud" aria-describedby="basic-addon1"
+                  [(ngModel)]="campo.longitud"
+                  >
+                </div>
+              </div>
+              <div class="col-md-3 mb-2">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Descripción</span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="descripcion" name="descripcion-nue-{{index}}" aria-label="descripcion" aria-describedby="basic-addon1"
+                  [(ngModel)]="campo.descripcion"
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row bg-dark pt-2" 
+              *ngFor="let campo of listCamposAuditoria; let index=index">
+              <div class="col-md-3 mb-2">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Nombre</span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="nombre" name="nombre-{{index}}" aria-label="nombre" aria-describedby="basic-addon1"
+                    [(ngModel)]="campo.campo"
+                  >
+                </div>
+              </div>
+              <div class="col-md-3 mb-2">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">Tipo</label>
+                  </div>
+                  <select class="custom-select" id="tipo" name="tipo-{{index}}" [(ngModel)]="campo.tipoCampo">
+                    <option selected>Seleccione ...</option>
+                    <option [ngValue]="tipocampo" *ngFor="let tipocampo of listTiposCampos">{{tipocampo.tipo}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-3 mb-2" >
+                <div class="input-group" *ngIf="campo.tipoCampo.longitud">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Logitud</span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="logitud" name="longitud-{{index}}" aria-label="longitud" aria-describedby="basic-addon1"
+                  [(ngModel)]="campo.longitud"
+                  >
+                </div>
+              </div>
+              <div class="col-md-3 mb-2">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Descripción</span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="descripcion" name="descripcion-{{index}}" aria-label="descripcion" aria-describedby="basic-addon1"
+                  [(ngModel)]="campo.descripcion"
+                  >
+                </div>
+              </div>
+            </div>
+          </form>
+          <div class="text-center my-3">
+            <button class="btn btn-success" (click)="generarCreacionTabla()">Generar Tabla BD</button>
+          </div>
+          <div class="text-center my-3">
+            <button class="btn btn-success" (click)="generarFuncionesBD()">Generar Funciones BD</button>
+          </div>
+          <div class="text-center my-3">
+            <button class="btn btn-success" (click)="generarCreacionTabla()">Generar Codigo</button>
+          </div>
+          <div class="text-center my-3">
+            <button class="btn btn-success" (click)="generarCreacionTabla()">Generar Codigo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

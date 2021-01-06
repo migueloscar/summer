@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "summer"
+    }
+  },
+  "defaultProject": "summer",
+  "cli": {
+    "analytics": false
+  }
 }
