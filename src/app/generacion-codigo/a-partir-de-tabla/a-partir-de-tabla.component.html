@@ -27,11 +27,10 @@
                 </div>
               </div>
             </div>
+            
             <div class="form-row">
               <div class="col-md-12 mb-2 d-flex justify-content-between">
-                <div>
-                  Campos de la tabla:
-                </div>
+                <h3>Campos de la tabla:</h3>
                 <div>
                   <button class="btn btn-success" (click)="agregarCampo()">Agregar Campo</button>
                 </div>
@@ -127,6 +126,119 @@
                 </div>
               </div>
             </div>
+            <div class="form-row">
+              <div class="col-md-12">
+                <h3>Lista de Funciones</h3>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-12 mb-2">
+                Listar
+              </div>
+              <div class="col-md-6 mb-2">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Nombre Funcion</span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="descripcion" name="fnListarNombre" aria-label="descripcion" aria-describedby="basic-addon1"
+                  [(ngModel)]="funcionesDatos.funcionLista.nombre"
+                  >
+                </div>
+              </div>
+              <div class="col-md-6 mb-2">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Objetivo</span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="descripcion" name="fnListarObjetivo" aria-label="descripcion" aria-describedby="basic-addon1"
+                  [(ngModel)]="funcionesDatos.funcionLista.objetivo"
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-12 mb-2">
+                Insertar
+              </div>
+              <div class="col-md-6 mb-2">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Nombre Funcion</span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="descripcion" name="fnCreaNombre" aria-label="descripcion" aria-describedby="basic-addon1"
+                  [(ngModel)]="funcionesDatos.funcionCrea.nombre"
+                  >
+                </div>
+              </div>
+              <div class="col-md-6 mb-2">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Objetivo</span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="descripcion" name="fnCreaObjetivo" aria-label="descripcion" aria-describedby="basic-addon1"
+                  [(ngModel)]="funcionesDatos.funcionCrea.objetivo"
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-12 mb-2">
+                Actualizar
+              </div>
+              <div class="col-md-6 mb-2">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Nombre Funcion</span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="descripcion" name="fnActualizaNombre" aria-label="descripcion" aria-describedby="basic-addon1"
+                  [(ngModel)]="funcionesDatos.funcionActualiza.nombre"
+                  >
+                </div>
+              </div>
+              <div class="col-md-6 mb-2">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Objetivo</span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="descripcion" 
+                  name="fnActualizaObjetivo" aria-label="descripcion" 
+                  aria-describedby="basic-addon1"
+                  [(ngModel)]="funcionesDatos.funcionActualiza.objetivo"
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-12 mb-2">
+                Eliminar
+              </div>
+              <div class="col-md-6 mb-2">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Nombre Funcion</span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="descripcion" 
+                  name="fnEliminaNombre" aria-label="descripcion" 
+                  aria-describedby="basic-addon1"
+                  [(ngModel)]="funcionesDatos.funcionElimina.nombre"
+                  >
+                </div>
+              </div>
+              <div class="col-md-6 mb-2">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Objetivo</span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="descripcion" name="fnEliminaObjetivo" aria-label="descripcion" aria-describedby="basic-addon1"
+                  [(ngModel)]="funcionesDatos.funcionElimina.objetivo"
+                  >
+                </div>
+              </div>
+            </div>
+
           </form>
           <div class="text-center my-3">
             <button class="btn btn-success" (click)="generarCreacionTabla()">Generar Tabla BD</button>
@@ -135,10 +247,10 @@
             <button class="btn btn-success" (click)="generarFuncionesBD()">Generar Funciones BD</button>
           </div>
           <div class="text-center my-3">
-            <button class="btn btn-success" (click)="generarCreacionTabla()">Generar Codigo</button>
+            <button class="btn btn-success" (click)="generarCreacionTabla()">Generar Vistas y Servicios Angular</button>
           </div>
           <div class="text-center my-3">
-            <button class="btn btn-success" (click)="generarCreacionTabla()">Generar Codigo</button>
+            <button class="btn btn-success" (click)="generarCreacionTabla()">Generar Servicios y Rutas Node</button>
           </div>
         </div>
       </div>
