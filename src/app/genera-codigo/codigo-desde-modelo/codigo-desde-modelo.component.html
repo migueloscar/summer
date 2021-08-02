@@ -1,0 +1,239 @@
+<div class="px-3 py-2">
+  <form #datosTablaForm="ngForm">
+    <mat-accordion class="example-headers-align" multi>
+      <!-- #enddocregion multi -->
+      <mat-expansion-panel expanded>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Datos de la Tabla
+          </mat-panel-title>
+          <mat-panel-description>
+            Datos generales que serán usado en las funciones
+            <mat-icon >table_rows</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+    
+        <div class="form-row">
+          <div class="col-md-6 mb-2">
+            <mat-form-field class="w-100" appearance="fill">
+              <mat-label>Nombre de la Tabla</mat-label>
+              <input name="nombreTabla" matInput placeholder="Nombre de la Tabla" [(ngModel)]="tablaDatos.nombre">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6 mb-2">
+            <mat-form-field  class="w-100" appearance="fill">
+              <mat-label>Descripción de la Tabla</mat-label>
+              <input matInput name="descripcionTabla" placeholder="Descripción de la Tabla" [(ngModel)]="tablaDatos.descripcion">
+            </mat-form-field>
+          </div>
+        </div>
+    
+      </mat-expansion-panel>
+      <!-- #docregion disabled -->
+      <mat-expansion-panel expanded>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Campos de Datos 
+          </mat-panel-title>
+          <mat-panel-description>
+            Campos de Datos
+            <button mat-mini-fab color="primary" (click)="agregarCampo()">
+              <mat-icon>add</mat-icon>
+            </button>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+    
+        <div class="form-row bg-info pt-2" 
+          *ngFor="let campo of listCampos; let index=index">
+          <div class="col-md-3 mb-2">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Nombre</span>
+              </div>
+              <input type="text" class="form-control" placeholder="nombre" name="nombre-nue-{{index}}" aria-label="nombre" aria-describedby="basic-addon1"
+                [(ngModel)]="campo.campo"
+              >
+            </div>
+          </div>
+          <div class="col-md-2 mb-2">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">Tipo</label>
+              </div>
+              <select class="custom-select" id="tipo" name="tipo-nue-{{index}}" [(ngModel)]="campo.tipoCampo">
+                <option selected>Seleccione ...</option>
+                <option [ngValue]="tipocampo" *ngFor="let tipocampo of listTiposCampos">{{tipocampo.tipo}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3 mb-2">
+            <div class="input-group" *ngIf="campo.tipoCampo.longitud">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Longitud</span>
+              </div>
+              <input type="text" class="form-control" placeholder="logitud" name="longitud-nue-{{index}}" aria-label="longitud" aria-describedby="basic-addon1"
+              [(ngModel)]="campo.longitud"
+              >
+            </div>
+          </div>
+          <div class="col-md-3 mb-2">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Descripción</span>
+              </div>
+              <input type="text" class="form-control" placeholder="descripción" name="descripcion-nue-{{index}}" aria-label="descripcion" aria-describedby="basic-addon1"
+              [(ngModel)]="campo.descripcion"
+              >
+            </div>
+          </div>
+          <div class="col-md-1 mb-2">
+            <button class="btn btn btn-danger" (click)="eliminarCampo(campo)">
+              <fa-icon [icon]="faTrash" ></fa-icon>
+              <span>
+                Eliminar
+              </span>
+            </button>
+          </div>
+        </div>
+      </mat-expansion-panel>
+      <!-- #enddocregion disabled -->
+
+      <mat-expansion-panel expanded>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Campos de Auditoria
+          </mat-panel-title>
+          <mat-panel-description>
+            Descripción de los campos de Auditoria
+            <mat-icon>build</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+    
+        <div class="form-row pt-2" 
+          *ngFor="let campo of listCamposAuditoria; let index=index">
+          <div class="col-md-3 mb-2">
+            <mat-form-field class="w-100" appearance="fill">
+              <mat-label>Nombre Campo</mat-label>
+              <input name="nombreCampo-{{index}}" matInput placeholder="Campo" [(ngModel)]="campo.campo">
+            </mat-form-field>
+          </div>
+          <div class="col-md-2 mb-2">
+            <mat-form-field appearance="fill">
+              <mat-label>Favorite food</mat-label>
+              <mat-select [(ngModel)]="campo.tipoCampo" name="tipocampo-{{index}}">
+                <mat-option *ngFor="let tipocampo of listTiposCampos" [value]="tipocampo">
+                  {{tipocampo.tipo}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+          </div>
+          <div class="col-md-3 mb-2" >
+
+            <mat-form-field class="w-100" appearance="fill" *ngIf="campo.tipoCampo.longitud">
+              <mat-label>Longitud Campo</mat-label>
+              <input type="number" name="longitudCampo-{{index}}" matInput placeholder="longitud" [(ngModel)]="campo.longitud">
+            </mat-form-field>
+          </div>
+          <div class="col-md-3 mb-2">
+            <mat-form-field class="w-100" appearance="fill">
+              <mat-label>Descripción del Campo</mat-label>
+              <input name="longitudCampo-{{index}}" matInput placeholder="descripción" [(ngModel)]="campo.descripcion">
+            </mat-form-field>
+          </div>
+          <div class="col-md-1 mb-2 text-center">
+            <button mat-mini-fab color="warn" (click)="eliminarCampo(campo)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+
+        </div>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel expanded>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Funciones
+          </mat-panel-title>
+          <mat-panel-description>
+            Funciones a Aplicarse en la Base de Datos
+            <mat-icon>build</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+    
+        <div class="form-row">
+          <div class="col-md-6 mb-2">
+            <mat-form-field class="w-100" appearance="fill">
+              <mat-label>Nombre de la Función</mat-label>
+              <input name="nombreFuncionListar" matInput placeholder="Nombre de la Función" [(ngModel)]="funcionesDatos.funcionLista.nombre">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6 mb-2">
+            <mat-form-field  class="w-100" appearance="fill">
+              <mat-label>Descripción de la Función</mat-label>
+              <input matInput name="descripcionFuncionListar" placeholder="Descripción de la Función" [(ngModel)]="funcionesDatos.funcionLista.objetivo">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-md-6 mb-2">
+            <mat-form-field class="w-100" appearance="fill">
+              <mat-label>Nombre de la Función</mat-label>
+              <input name="nombreFuncionCrear" matInput placeholder="Nombre de la Función" [(ngModel)]="funcionesDatos.funcionCrea.nombre">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6 mb-2">
+            <mat-form-field  class="w-100" appearance="fill">
+              <mat-label>Descripción de la Función</mat-label>
+              <input matInput name="descripcionFuncionCrear" placeholder="Descripción de la Función" [(ngModel)]="funcionesDatos.funcionCrea.objetivo">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-md-6 mb-2">
+            <mat-form-field class="w-100" appearance="fill">
+              <mat-label>Nombre de la Función</mat-label>
+              <input name="fnActualizaNombre" matInput placeholder="Nombre de la Función" [(ngModel)]="funcionesDatos.funcionActualiza.nombre">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6 mb-2">
+            <mat-form-field  class="w-100" appearance="fill">
+              <mat-label>Descripción de la Función</mat-label>
+              <input matInput name="fnActualizaObjetivo" placeholder="Descripción de la Función" [(ngModel)]="funcionesDatos.funcionActualiza.objetivo">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-md-6 mb-2">
+            <mat-form-field class="w-100" appearance="fill">
+              <mat-label>Nombre de la Función</mat-label>
+              <input name="fnEliminaNombre" matInput placeholder="Nombre de la Función" [(ngModel)]="funcionesDatos.funcionElimina.nombre">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6 mb-2">
+            <mat-form-field  class="w-100" appearance="fill">
+              <mat-label>Descripción de la Función</mat-label>
+              <input matInput name="fnEliminaObjetivo" placeholder="Descripción de la Función" [(ngModel)]="funcionesDatos.funcionElimina.objetivo">
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </form>
+</div>
+
+<div>
+  <div class="text-center my-3">
+    <button class="btn btn-success" (click)="generarCreacionTabla()">Generar Tabla BD</button>
+  </div>
+  <div class="text-center my-3">
+    <button class="btn btn-success" (click)="generarFuncionesBD()">Generar Funciones BD</button>
+  </div>
+  <div class="text-center my-3">
+    <button class="btn btn-success" (click)="generarCreacionTabla()">Generar Vistas y Servicios Angular</button>
+  </div>
+  <div class="text-center my-3">
+    <button class="btn btn-success" (click)="generarCreacionTabla()">Generar Servicios y Rutas Node</button>
+  </div>
+</div>
