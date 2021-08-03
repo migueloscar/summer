@@ -16,7 +16,11 @@
   <mat-sidenav #sidenav mode="side" opened class="example-sidenav"
                 [fixedInViewport]="options.value.fixed" [fixedTopGap]="options.value.top"
                 [fixedBottomGap]="options.value.bottom">
-    {{options.value.fixed ? 'Fixed' : 'Non-fixed'}} Sidenav
+    <mat-selection-list #shoes [multiple]="false">
+      <mat-list-option *ngFor="let menuOption of menu" [routerLink]="menuOption.ruta" [disabled]="menuOption.parent" [ngClass]="{'text-primary':menuOption.parent,'text-info pl-3':!menuOption.parent}">
+        {{menuOption.description}}
+      </mat-list-option>
+    </mat-selection-list>
   </mat-sidenav>
 
   <mat-sidenav-content >

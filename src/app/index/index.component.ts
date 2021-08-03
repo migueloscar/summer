@@ -17,7 +17,27 @@ export class IndexComponent implements OnInit {
     });
   }
 
+  menu:any[]=[];
+
   ngOnInit(): void {
+    this.menu = [
+      {
+        parent : true,
+        description:"Generación de Código",
+        ruta:""
+      },
+      {
+        parent : false,
+        description:"Desde Tabla",
+        ruta:"generacion-codigo/codigo-desde-modelo"
+      },
+      {
+        parent : false,
+        description:"Recuperar Json",
+        ruta:"generacion-codigo/codigo-desde-json"
+      }
+    ]
+    
   }
 
   showFiller = false;

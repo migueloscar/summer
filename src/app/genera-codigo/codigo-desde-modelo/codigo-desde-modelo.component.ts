@@ -17,7 +17,7 @@ export class CodigoDesdeModeloComponent implements OnInit {
       campo:"cusureg",
       codigotipo: 2,
       longitud : 4,
-      descripcion : "USUARIO QUE REGISTRO"
+      descripcion : "USUARIO QUE REALIZO EL REGISTRO"
     },
     {
       campo:"dfecreg",
@@ -35,19 +35,19 @@ export class CodigoDesdeModeloComponent implements OnInit {
       campo:"cusumod",
       codigotipo: 2,
       longitud : 4,
-      descripcion : "USUARIO MODIFICACION"
+      descripcion : "USUARIO QUE REALIZO LA ULTIMA MODIFICACIÓN"
     },
     {
       campo:"dfecmod",
       codigotipo: 5,
       longitud : 0,
-      descripcion : "FECHA DE MODIFICACION"
+      descripcion : "FECHA QUE SE REALIZO LA ULTIMA MODIFICACIÓN"
     },
     {
       campo:"cipmodi",
       codigotipo: 3,
       longitud : 40,
-      descripcion : "IP DE MODIFICACION"
+      descripcion : "IP DESDE DONDE SE REALIZO LA MODIFICACIÓN"
     },
     {
       campo:"lestado",
@@ -97,7 +97,7 @@ export class CodigoDesdeModeloComponent implements OnInit {
     },
     {
       codigotipo: 7,
-      tipo:"SERIAL",
+      tipo:"serial",
       tipoBD:"SERIAL",
       longitud : false
     },
@@ -116,20 +116,20 @@ export class CodigoDesdeModeloComponent implements OnInit {
 
   funcionesDatos : any = {
     funcionLista: { 
-      nombre:"FX_PER_LISMODULO",
-      objetivo:"Lista los modulos"
+      nombre:"FX_PER_SELMODULO",
+      objetivo:"Lista los módulos"
     },
     funcionCrea: { 
       nombre:"FX_PER_INSMODULO",
-      objetivo:"inserta los modulos"
+      objetivo:"Inserta los módulos"
     },
     funcionActualiza: { 
-      nombre:"FX_PER_ACTMODULO",
-      objetivo:"actualiza los modulos"
+      nombre:"FX_PER_UPDMODULO",
+      objetivo:"Actualiza los módulos"
     } ,
     funcionElimina: { 
-      nombre:"FX_PER_DELMODULO",
-      objetivo:"elimina los modulos"
+      nombre:"FX_PER_ELIMODULO",
+      objetivo:"Elimina los módulos"
     } 
   };
 
@@ -139,8 +139,8 @@ export class CodigoDesdeModeloComponent implements OnInit {
   }
 
   modulo : any={
-    sistema : "Softia",
-    modulo : "GESTION DE TALENTO HUMANO"
+    sistema : "SOFTIA",
+    modulo : "PERSONAL"
   }
 
   listaCamposTotales : any[] = [];
@@ -219,7 +219,7 @@ export class CodigoDesdeModeloComponent implements OnInit {
     
     //agregando campos
     this.listaCamposTotales.map((campo,indice)=>{
-      let consCampo =`COMMENT ON COLUMN public.${this.tablaDatos.nombre} IS '${campo.descripcion}';`;
+      let consCampo =`COMMENT ON COLUMN public.${this.tablaDatos.nombre}.${campo.campo} IS '${campo.descripcion}';`;
       arrayTabla.push(consCampo);
     });
 
@@ -286,6 +286,8 @@ export class CodigoDesdeModeloComponent implements OnInit {
     arrayTabla.push(`  ROWS 1000;`);
     arrayTabla.push(`ALTER FUNCTION public.${this.funcionesDatos.funcionLista.nombre}()`);
     arrayTabla.push(`  OWNER TO rgensoftia;`);
+    arrayTabla.push(`GRANT EXECUTE ON FUNCTION public.${this.funcionesDatos.funcionLista.nombre}() TO rgensoftia`);
+    arrayTabla.push(`REVOKE ALL ON FUNCTION public.${this.funcionesDatos.funcionLista.nombre}() FROM public`);
     arrayTabla.push(`COMMENT ON FUNCTION public.${this.funcionesDatos.funcionLista.nombre}() IS '`);
     arrayTabla.push(`/***************************************************************************************************`);
     arrayTabla.push(`* COPYRIGHT © ${fechaActual.getFullYear()} CRAC CENTRO - All rights reserved.`);
@@ -296,7 +298,7 @@ export class CodigoDesdeModeloComponent implements OnInit {
     arrayTabla.push(`* FECHA CREACIÓN    : ${fechaActual.toISOString().substring(0,10)}`);
     arrayTabla.push(`* SISTEMA / MODULO  : ${this.modulo.sistema} / ${this.modulo.modulo}`);
     arrayTabla.push(`* MODIFICACIONES    :`);
-    arrayTabla.push(`* Fecha  	Responsable  	Descripcion del cambio`);
+    arrayTabla.push(`* Fecha  	Responsable  	Descripción del cambio`);
     arrayTabla.push(`* `);
     arrayTabla.push(`* SINTAXIS DE EJEMPLO:`);
     arrayTabla.push(`* `);
@@ -437,6 +439,8 @@ export class CodigoDesdeModeloComponent implements OnInit {
     arrayTabla.push(`  ROWS 1000;`);
     arrayTabla.push(`ALTER FUNCTION public.${this.funcionesDatos.funcionCrea.nombre}(${camposFuncionParametros.join(', ')})`);
     arrayTabla.push(`  OWNER TO rgensoftia;`);
+    arrayTabla.push(`GRANT EXECUTE ON FUNCTION public.${this.funcionesDatos.funcionCrea.nombre}(${camposFuncionParametros.join(', ')}) TO rgensoftia`);
+    arrayTabla.push(`REVOKE ALL ON FUNCTION public.${this.funcionesDatos.funcionCrea.nombre}(${camposFuncionParametros.join(', ')}) FROM public`);
     arrayTabla.push(`COMMENT ON FUNCTION public.${this.funcionesDatos.funcionCrea.nombre}(${camposFuncionParametros.join(', ')}) IS '`);
     arrayTabla.push(`/***************************************************************************************************`);
     arrayTabla.push(`* COPYRIGHT © ${fechaActual.getFullYear()} CRAC CENTRO - All rights reserved.`);
@@ -447,7 +451,7 @@ export class CodigoDesdeModeloComponent implements OnInit {
     arrayTabla.push(`* FECHA CREACIÓN    : ${fechaActual.toISOString().substring(0,10)}`);
     arrayTabla.push(`* SISTEMA / MODULO  : ${this.modulo.sistema} / ${this.modulo.modulo}`);
     arrayTabla.push(`* MODIFICACIONES    :`);
-    arrayTabla.push(`* Fecha  	Responsable  	Descripcion del cambio`);
+    arrayTabla.push(`* Fecha  	Responsable  	Descripción del cambio`);
     arrayTabla.push(`* `);
     arrayTabla.push(`* SINTAXIS DE EJEMPLO:`);
     arrayTabla.push(`* `);
@@ -585,6 +589,8 @@ export class CodigoDesdeModeloComponent implements OnInit {
     arrayTabla.push(`  ROWS 1000;`);
     arrayTabla.push(`ALTER FUNCTION public.${this.funcionesDatos.funcionActualiza.nombre}(${camposFuncionParametros.join(', ')})`);
     arrayTabla.push(`  OWNER TO rgensoftia;`);
+    arrayTabla.push(`GRANT EXECUTE ON FUNCTION public.${this.funcionesDatos.funcionActualiza.nombre}(${camposFuncionParametros.join(', ')}) TO rgensoftia`);
+    arrayTabla.push(`REVOKE ALL ON FUNCTION public.${this.funcionesDatos.funcionActualiza.nombre}(${camposFuncionParametros.join(', ')}) FROM public`);
     arrayTabla.push(`COMMENT ON FUNCTION public.${this.funcionesDatos.funcionActualiza.nombre}(${camposFuncionParametros.join(', ')}) IS '`);
     arrayTabla.push(`/***************************************************************************************************`);
     arrayTabla.push(`* COPYRIGHT © ${fechaActual.getFullYear()} CRAC CENTRO - All rights reserved.`);
@@ -734,6 +740,8 @@ export class CodigoDesdeModeloComponent implements OnInit {
     arrayTabla.push(`  ROWS 1000;`);
     arrayTabla.push(`ALTER FUNCTION public.${this.funcionesDatos.funcionElimina.nombre}(${camposFuncionParametros.join(', ')})`);
     arrayTabla.push(`  OWNER TO rgensoftia;`);
+    arrayTabla.push(`GRANT EXECUTE ON FUNCTION public.${this.funcionesDatos.funcionElimina.nombre}(${camposFuncionParametros.join(', ')}) TO rgensoftia`);
+    arrayTabla.push(`REVOKE ALL ON FUNCTION public.${this.funcionesDatos.funcionElimina.nombre}(${camposFuncionParametros.join(', ')}) FROM public`);
     arrayTabla.push(`COMMENT ON FUNCTION public.${this.funcionesDatos.funcionElimina.nombre}(${camposFuncionParametros.join(', ')}) IS '`);
     arrayTabla.push(`/***************************************************************************************************`);
     arrayTabla.push(`* COPYRIGHT © ${fechaActual.getFullYear()} CRAC CENTRO - All rights reserved.`);
@@ -744,7 +752,7 @@ export class CodigoDesdeModeloComponent implements OnInit {
     arrayTabla.push(`* FECHA CREACIÓN    : ${fechaActual.toISOString().substring(0,10)}`);
     arrayTabla.push(`* SISTEMA / MODULO  : ${this.modulo.sistema} / ${this.modulo.modulo}`);
     arrayTabla.push(`* MODIFICACIONES    :`);
-    arrayTabla.push(`* Fecha  	Responsable  	Descripcion del cambio`);
+    arrayTabla.push(`* FECHA  	RESPONSABLE  	DESCRIPCIÓN DEL CAMBIO`);
     arrayTabla.push(`* `);
     arrayTabla.push(`* SINTAXIS DE EJEMPLO:`);
     arrayTabla.push(`* `);
