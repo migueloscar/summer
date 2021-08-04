@@ -17,43 +17,43 @@ export class CodigoDesdeModeloComponent implements OnInit {
       campo:"cusureg",
       codigotipo: 2,
       longitud : 4,
-      descripcion : "USUARIO QUE REALIZO EL REGISTRO"
+      descripcion : "Usuario que realizó la creación de este registro"
     },
     {
       campo:"dfecreg",
       codigotipo: 5,
       longitud : 0,
-      descripcion : "FECHA DE REGISTRO"
+      descripcion : "Fecha cuando se realizó la creación de este registro"
     },
     {
       campo:"cipregi",
       codigotipo: 3,
       longitud : 40,
-      descripcion : "IP DE REGISTRO"
+      descripcion : "IP desde donde se realizó la creación de este registro"
     },
     {
       campo:"cusumod",
       codigotipo: 2,
       longitud : 4,
-      descripcion : "USUARIO QUE REALIZO LA ULTIMA MODIFICACIÓN"
+      descripcion : "Usuario que realizó la última modificación"
     },
     {
       campo:"dfecmod",
       codigotipo: 5,
       longitud : 0,
-      descripcion : "FECHA QUE SE REALIZO LA ULTIMA MODIFICACIÓN"
+      descripcion : "Fecha que se realizó la última modificación"
     },
     {
       campo:"cipmodi",
       codigotipo: 3,
       longitud : 40,
-      descripcion : "IP DESDE DONDE SE REALIZO LA MODIFICACIÓN"
+      descripcion : "IP desde donde se realizó la última modificación"
     },
     {
       campo:"lestado",
       codigotipo: 6,
       longitud : 0,
-      descripcion : "ESTADO DEL REGISTRO"
+      descripcion : "Estado lógico del registro"
     }
   ];
 
@@ -133,12 +133,12 @@ export class CodigoDesdeModeloComponent implements OnInit {
     } 
   };
 
-  desarrollador : any={
+  desarrollador : any = {
     nombre: "Miguel Aguirre Paucar",
     email:"maguirre@cajacentro.com.pe"
   }
 
-  modulo : any={
+  modulo : any = {
     sistema : "SOFTIA",
     modulo : "PERSONAL"
   }

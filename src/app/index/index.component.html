@@ -1,31 +1,103 @@
-<mat-toolbar color="primary">
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="sidenav.toggle()">
-    <mat-icon>menu</mat-icon>
+<mat-toolbar color="primary" class="px-3">
+  <span> <i class="fas fa-sun"></i> Summer</span>
+  <button mat-stroked-button class="example-icon favorite-icon ml-3" aria-label="Example icon-button with heart icon">
+    <i class="fas fa-book mr-1"></i> Documentation
   </button>
-  <span>Summer</span>
   <span class="example-spacer"></span>
-  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-    <mat-icon>favorite</mat-icon>
-  </button>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-    <mat-icon>share</mat-icon>
+  <button mat-stroked-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <i class="fab fa-github mr-1"></i> Git Hub
   </button>
 </mat-toolbar>
+<div class="header py-3">
+  <p class="text-white text-center display-1"> <i class="fas fa-sun"></i> SUMMER</p>
+  <h2 class="text-white text-center display-6">A developing tool for summarizing repetitive work.</h2>
+  <div class="text-white text-center py-3">
+    <button mat-stroked-button class="example-icon favorite-icon ml-3" aria-label="Example icon-button with heart icon">
+      <mat-icon>settings_applications</mat-icon> Get Started
+    </button>
+  </div>
+</div>
+<div class="row py-3">
+  <div class="col-md-4 my-3">
+    <h1 class="text-center">START A NEW PROJECT</h1>
+    <p class="text-center my-3">
+      Start a new project from the scratch.
+    </p>
+    <div class="text-center">
+      <button mat-stroked-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+        <mat-icon class="mr-1">play_arrow</mat-icon> Start a New Project
+      </button>
+    </div>
+  </div>
+  <div class="col-md-4 my-3">
+    <h1 class="text-center">RESUME FROM A BACKUP</h1>
+    <p class="text-center my-3">
+      Resume the work from a backup.
+    </p>
+    <div class="text-center">
+      <button mat-stroked-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+        <mat-icon class="mr-1">restart_alt</mat-icon> Resume from a Backup
+      </button>
+    </div>
+  </div>
+  <div class="col-md-4 my-3">
+    <h1 class="text-center">CHECK UP DATABASE FILES</h1>
+    <p class="text-center my-3">
+      Check the parts that are required in a database file.
+    </p>
+    <div class="text-center">
+      <button mat-stroked-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+        <mat-icon class="mr-1">rule</mat-icon> Check finished files
+      </button>
+    </div>
+  </div>
+</div>
 
-<mat-sidenav-container class="example-container">
-  <mat-sidenav #sidenav mode="side" opened class="example-sidenav"
-                [fixedInViewport]="options.value.fixed" [fixedTopGap]="options.value.top"
-                [fixedBottomGap]="options.value.bottom">
-    <mat-selection-list #shoes [multiple]="false">
-      <mat-list-option *ngFor="let menuOption of menu" [routerLink]="menuOption.ruta" [disabled]="menuOption.parent" [ngClass]="{'text-primary':menuOption.parent,'text-info pl-3':!menuOption.parent}">
-        {{menuOption.description}}
-      </mat-list-option>
-    </mat-selection-list>
-  </mat-sidenav>
+<div class="bg-light py-3">
+  <div class="row">
+    <div class="col-md-4">
+      <h1 class=" text-center">
+        TECHNOLOGIES
+      </h1>
+    </div>
+  </div>
+  <div class="row py-3">
+    <div class="col-md-4 col-4  display-2 text-center">
+      <i class="fab fa-node"></i>
+      <h4>NodeJS</h4>
+    </div>
+    <div class="col-md-4 col-4  display-2 text-center">
+      <i class="fab fa-angular"></i>
+      <h4>Angular2</h4>
+    </div>
+    <div class="col-md-4 col-4  display-2 text-center">
+      <i class="icon-postgres"></i>
+      <h4>PostgreSQL</h4>
+    </div>
+  </div>
+</div>
 
-  <mat-sidenav-content >
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<div class="py-3">
+  <div class="row">
+    <div class="col-md-4">
+      <h1 class=" text-center">
+        TESTIMONIALS
+      </h1>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-around">
+    <div class="col-md-8">
+      <p class="text-justify px-3 mb-1">"This tool helps to developers to decrease the risk to commit common mistakes that are defined in the standars or conventions, 
+        also checks if the objects of database already exists. In addition, this tool prevents you of drop some object of 
+        the database by mistake because it has some functions that helps you to check if the objects already existing in the database."</p>
+      <p class="text-right px-3 mb-3"><em>Miguel A.</em></p>
+    </div>
+  </div>
+</div>
 
-<mat-toolbar class="example-footer bg-dark text-white">Tool for developing</mat-toolbar>
+<mat-toolbar class="bg-dark text-white">
+  <p>
+    Tool for developing
+  </p>
+  <span class="example-spacer"></span>
+</mat-toolbar>
