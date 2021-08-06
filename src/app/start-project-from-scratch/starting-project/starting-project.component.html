@@ -1,0 +1,83 @@
+  <div class="px-3 py-2">
+  <form #datosTablaForm="ngForm">
+    <mat-accordion class="example-headers-align" multi>
+      <!-- #enddocregion multi -->
+      <mat-expansion-panel expanded>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Datos del Proyecto
+          </mat-panel-title>
+          <mat-panel-description>
+            Datos generales del Proyecto
+            <mat-icon >table_rows</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+    
+        <div class="form-row">
+          <div class="col-md-12 mb-2">
+            <mat-form-field class="w-100" appearance="fill">
+              <mat-label>Nombre del Proyecto</mat-label>
+              <input name="nombreTabla" matInput placeholder="Nombre de la Tabla" [(ngModel)]="proyecto.nombre">
+            </mat-form-field>
+          </div>
+        </div>
+    
+      </mat-expansion-panel>
+      <!-- #docregion disabled -->
+      <mat-expansion-panel expanded>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Datos del Desarrollador
+          </mat-panel-title>
+          <mat-panel-description>
+            Datos del Desarrollador Necesarios Para la Documentación
+            <mat-icon >table_rows</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+    
+        <div class="form-row">
+          <div class="col-md-4 mb-2">
+            <mat-form-field class="w-100" appearance="fill">
+              <mat-label>Nombre del Proyecto</mat-label>
+              <input name="nombreTabla" matInput placeholder="Nombre de la Tabla" [(ngModel)]="desarrollador.nombre">
+            </mat-form-field>
+          </div>
+          <div class="col-md-4 mb-2">
+            <mat-form-field  class="w-100" appearance="fill">
+              <mat-label>Usuario del Desarrollador</mat-label>
+              <input matInput name="descripcionTabla" placeholder="Descripción de la Tabla" [(ngModel)]="desarrollador.username">
+            </mat-form-field>
+          </div>
+          <div class="col-md-4 mb-2">
+            <mat-form-field  class="w-100" appearance="fill">
+              <mat-label>Correo del Desarrollador</mat-label>
+              <input matInput name="descripcionTabla" placeholder="Descripción de la Tabla" [(ngModel)]="desarrollador.email">
+            </mat-form-field>
+          </div>
+        </div>
+    
+      </mat-expansion-panel>
+
+      <mat-expansion-panel expanded>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Funciones Node 
+          </mat-panel-title>
+          <mat-panel-description>
+            Generación de los Archivos de Node
+            <mat-icon>settings_suggest</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="form-row">
+          <div class="col-md-6 mb-2 d-flex justify-content-around">
+            <button mat-raised-button color="primary" >Controladores</button>
+          </div>
+          <div class="col-md-6 mb-2 d-flex justify-content-around">
+            <button mat-raised-button color="primary" >Rutas</button>
+          </div>
+        </div>
+      </mat-expansion-panel>
+      
+    </mat-accordion>
+  </form>
+</div>
