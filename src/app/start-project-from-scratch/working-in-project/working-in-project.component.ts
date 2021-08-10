@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import * as FileSaver from 'file-saver';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
-
 @Component({
   selector: 'app-working-in-project',
   templateUrl: './working-in-project.component.html',
@@ -11,6 +10,8 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 export class WorkingInProjectComponent implements OnInit {
   //font icons
   faTrash = faTrash;
+
+  wholeProject : any = {};
 
   listCampos : any[] = [];
   listCamposAuditoria : any[] = [
@@ -59,7 +60,6 @@ export class WorkingInProjectComponent implements OnInit {
   ];
 
   listTiposCampos : any[]= [
-    
     { 
       codigotipo: 1,
       tipo:"integer",
@@ -150,7 +150,6 @@ export class WorkingInProjectComponent implements OnInit {
 
   ngOnInit(): void {
     this.seleccionandoCampos();
-    console.log("this.listaCamposTotales",this.listaCamposTotales);
   }
 
   agregarCampo(){

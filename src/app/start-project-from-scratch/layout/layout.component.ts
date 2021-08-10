@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import { TableService } from 'src/app/services/table.service';
 
 @Component({
   selector: 'app-layout',
@@ -9,34 +10,42 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 export class LayoutComponent implements OnInit {
 
   options: FormGroup;
+  allTables: any[] = [];
+  menu:any[]=[];
 
-  constructor(fb: FormBuilder) {
+  constructor(fb: FormBuilder,private tableService:TableService) {
     this.options = fb.group({
       bottom: 0,
       fixed: false,
       top: 0
     });
   }
-  menu:any[]=[];
+  
 
   ngOnInit(): void {
+    //this.allTables = this.tableService.getTables();
+    let texto = this.tableService.getTables();
+    console.log("texto",texto);
+    let listMenus = this.allTables.map((table:any) => 
+    {
+      return {
+        parent : false,
+        description : table.name,
+        path : table.name
+      };
+    });
+
     this.menu = [
       {
         parent : true,
-        description:"Generación de Código",
-        ruta:""
-      },
-      {
-        parent : false,
-        description:"Desde Tabla",
-        ruta:"generacion-codigo/codigo-desde-modelo"
-      },
-      {
-        parent : false,
-        description:"Recuperar Json",
-        ruta:"generacion-codigo/codigo-desde-json"
+        description : "Generación de Código",
+        path : ""
       }
     ]
+    this.menu.push(...listMenus);
   }
-  
+
+  addTable(){
+    
+  }
 }

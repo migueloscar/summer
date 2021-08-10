@@ -17,10 +17,16 @@
                 [fixedInViewport]="options.value.fixed" [fixedTopGap]="options.value.top"
                 [fixedBottomGap]="options.value.bottom">
     <mat-selection-list #shoes [multiple]="false">
-      <mat-list-option *ngFor="let menuOption of menu" [routerLink]="menuOption.ruta" [disabled]="menuOption.parent" [ngClass]="{'text-primary':menuOption.parent,'text-info pl-3':!menuOption.parent}">
+      <mat-list-option *ngFor="let menuOption of menu" [routerLink]="'./'+menuOption.path" [disabled]="menuOption.parent" [ngClass]="{'text-primary':menuOption.parent,'text-info pl-3':!menuOption.parent}">
         {{menuOption.description}}
+        {{menuOption.path}}
       </mat-list-option>
     </mat-selection-list>
+    <div class="text-center mt-3">
+      <button mat-raised-button class="bg-success text-white" (click)="addTable()"> 
+        <mat-icon>note_add</mat-icon> Agregar Tabla
+      </button>
+    </div>
   </mat-sidenav>
   <mat-sidenav-content style="height: calc(100vh - 128px)">
     <router-outlet></router-outlet>

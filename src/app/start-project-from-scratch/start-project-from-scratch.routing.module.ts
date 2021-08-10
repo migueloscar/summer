@@ -6,31 +6,28 @@ import { WorkingInProjectComponent } from './working-in-project/working-in-proje
 const routes: Routes = [
   {
     path : '',
-    component: LayoutComponent,
+    redirectTo: 'starting-project',
+  },
+  {
+    path : 'starting-project',
+    component: StartingProjectComponent,
     data: {
       title: 'Código desde modelo'
     },
+  },
+  {
+    path : 'working-in-project',
+    component: LayoutComponent,
     children:[
       {
-        path: '',
-        redirectTo: 'starting-project'
-      },
-      {
-        path: 'starting-project',
-        component: StartingProjectComponent,
-        data: {
-          title: 'Código desde modelo'
-        },
-      },
-      {
-        path: 'working-in-project',
+        path: ':tableName',
         component: WorkingInProjectComponent,
         data: {
           title: 'Código desde modelo'
         },
       }
     ]
-  },
+  }
 ];
 
 @NgModule({
