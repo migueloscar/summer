@@ -5,8 +5,15 @@ import { StorageService } from './storage.service';
   providedIn: 'root'
 })
 export class TableService {
-  defaultName : string = "s01mmodulo";
-  defaultTableDescription : string = "Tabla maestra de módulos";
+  defaultTableInfo : any = {
+    name:"s01mmodulo",
+    description:"Tabla maestra de módulos",
+    module:{
+      name:"Personal",
+      abbreviation: "PER",
+      initial:"r"
+    }
+  }
   defaultDataFields : any[] = [
     {
       name:"cnommod",
@@ -79,13 +86,14 @@ export class TableService {
     }
   ]
 
-
   constructor(private storageService:StorageService) { }
 
   getDefaultTableLayout(){
-    let tableLayout={
-      name: this.defaultName,
-      tableDescription : this.defaultTableDescription,
+    let tables = this.getTables();
+    let maxId = Math.max(...tables.map((table:any) => table.id));
+    let tableLayout = {
+      id : maxId+1,
+      tableInfo: this.defaultTableInfo,
       dataFields : this.defaultDataFields,
       auditFields : this.defaultAuditFields,
       functions : this.defaultFunctions
@@ -103,7 +111,7 @@ export class TableService {
 
   addTable(){
     let tables = this.getTables();
-    console.log("tables",tables);
+    tables.push(this.getDefaultTableLayout());
+    this.setTables(tables);
   }
-
 }

@@ -8,11 +8,12 @@ export class StorageService {
   constructor() { }
 
   getValueFromLocalStorage(key:string){
-    return localStorage.getItem(key);
+    return JSON.parse(localStorage.getItem(key) || 'null');
   }
 
   setValueToLocalStorage(key:string, value:any){
-    localStorage.setItem(key, value);
+    let valueString = JSON.stringify(value);
+    localStorage.setItem(key, valueString);
   }
 
   initProjectInLocalStorage(projectDetails:any, developer:any, tables:any){

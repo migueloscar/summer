@@ -23,9 +23,12 @@ export class LayoutComponent implements OnInit {
   
 
   ngOnInit(): void {
-    //this.allTables = this.tableService.getTables();
-    let texto = this.tableService.getTables();
-    console.log("texto",texto);
+    this.getTables();
+  }
+  
+  getTables(){
+    this.allTables = this.tableService.getTables();
+    
     let listMenus = this.allTables.map((table:any) => 
     {
       return {
@@ -34,7 +37,7 @@ export class LayoutComponent implements OnInit {
         path : table.name
       };
     });
-
+    console.log("listMenus",listMenus);
     this.menu = [
       {
         parent : true,
@@ -43,9 +46,12 @@ export class LayoutComponent implements OnInit {
       }
     ]
     this.menu.push(...listMenus);
+    console.log("this.menu",this.menu);
   }
 
   addTable(){
+    this.tableService.addTable();
+    this.getTables();
     
   }
 }

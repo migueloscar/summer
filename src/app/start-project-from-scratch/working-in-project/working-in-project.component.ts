@@ -458,9 +458,7 @@ export class WorkingInProjectComponent implements OnInit {
     arrayTabla.push(`* SELECT * FROM public.${this.funcionesDatos.funcionCrea.nombre}(${camposFuncionParametros.join(', ')})`);
     arrayTabla.push(`***************************************************************************************************/';`);
     arrayTabla.push(``);
-
     return arrayTabla;
-
   }
 
   funcionActualizarBD(){
@@ -555,8 +553,6 @@ export class WorkingInProjectComponent implements OnInit {
     camposAuditoriaActualizarRegistrar.map((campo,indice)=>{
       camposAActualizar.push(campo);
     });
-    
-    
 
     let valorAActualizar = camposAActualizar.map(campo=>{
       switch(campo)

@@ -21,6 +21,7 @@ export class StartingProjectComponent implements OnInit {
   }
 
   passToWorking(){
+    this.startingProject();
     this.router.navigate(['./../working-in-project'], { relativeTo: this.route });
   }
 
